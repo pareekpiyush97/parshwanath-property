@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="preload" as="video" href="assets/video/walk.mp4" media="(min-width: 701px)">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="preload" as="video" href="assets/video/hero.mp4" media="(min-width: 701px)">
+<link rel="stylesheet" href="css/style.css?v=5">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,7 +38,7 @@
 </head>
 <body>
 
-<a class="skip" href="#land">Skip the walkthrough</a>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="nav" id="nav">
   <a class="brand" href="#top" aria-label="Parshwanath Property and Developers, home">
@@ -75,66 +75,29 @@
 
 <main id="main">
 
-<!-- ══ The walkthrough: scroll drives the film ══ -->
-<section class="walk" id="top" aria-label="Property walkthrough">
-  <div class="walk__stage">
-    <video class="walk__video" id="walkVideo"
-           poster="assets/img/hero-poster.jpg"
-           muted playsinline preload="auto" tabindex="-1" aria-hidden="true">
-      <source src="assets/video/walk-mobile.mp4" type="video/mp4" media="(max-width: 700px)">
-      <source src="assets/video/walk.mp4" type="video/mp4">
-    </video>
-    <div class="walk__scrim"></div>
+<!-- ══ Hero ══ -->
+<section class="hero" id="top">
+  <video class="hero__video" id="heroVideo"
+         poster="assets/img/hero-poster.jpg"
+         autoplay muted loop playsinline preload="auto" tabindex="-1" aria-hidden="true">
+    <source src="assets/video/hero-mobile.mp4" type="video/mp4" media="(max-width: 700px)">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero__scrim"></div>
 
-    <div class="walk__caps" id="walkCaps">
-
-      <figure class="cap is-on" data-from="0" data-to="0.2457">
-        <figcaption>
-          <p class="cap__eyebrow">Udaipur <i>&middot;</i> Rajsamand <i>&middot;</i> Mumbai</p>
-          <h1 class="cap__title">Building spaces.<br><em>Building trust.</em></h1>
-          <p class="cap__body">UIT converted plots, villas, farms and homes &mdash; clear title, same-day rajstri, and roads already laid.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="cap" data-from="0.2457" data-to="0.5081">
-        <figcaption>
-          <p class="cap__eyebrow">The living room</p>
-          <h2 class="cap__title">Corner glass,<br><em>and the evening.</em></h2>
-          <p class="cap__body">Every principal room turns to the light. The city sits below the sill, not across the road.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="cap" data-from="0.5081" data-to="0.7496">
-        <figcaption>
-          <p class="cap__eyebrow">The kitchen</p>
-          <h2 class="cap__title">Stone that takes<br><em>a lifetime.</em></h2>
-          <p class="cap__body">A full marble island, cabinetry to the ceiling, and everything within one turn.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="cap" data-from="0.7496" data-to="1.001">
-        <figcaption>
-          <p class="cap__eyebrow">The roof</p>
-          <h2 class="cap__title">Where the day<br><em>finally stops.</em></h2>
-          <p class="cap__body">An infinity edge above the skyline &mdash; the last thing you see before the lights come on.</p>
-        </figcaption>
-      </figure>
-
+  <div class="hero__inner">
+    <p class="hero__eyebrow">Udaipur <i>&middot;</i> Rajsamand <i>&middot;</i> Mumbai</p>
+    <h1 class="hero__title">Building spaces.<br><em>Building trust.</em></h1>
+    <p class="hero__lede">UIT converted plots, villas, farms and homes &mdash; clear title, same-day rajstri, and roads already laid.</p>
+    <div class="hero__cta">
+      <a class="btn btn--solid" href="#contact">Book a site visit</a>
+      <a class="btn btn--ghost" href="https://wa.me/918890507608?text=Hi%20Parshwanath%20Property%2C%20I%20would%20like%20to%20book%20a%20site%20visit." target="_blank" rel="noopener">WhatsApp us</a>
     </div>
+  </div>
 
-    <!-- where you are in the walk -->
-    <div class="rail" aria-hidden="true">
-      <ol class="rail__marks">
-        <li data-at="0">Approach</li>
-        <li data-at="0.2457">Living</li>
-        <li data-at="0.5081">Kitchen</li>
-        <li data-at="0.7496">Roof</li>
-      </ol>
-      <div class="rail__track"><span class="rail__fill" id="railFill"></span></div>
-    </div>
-
-    <p class="walk__hint" id="walkHint">Scroll to walk through</p>
-    <p class="walk__note">Project visualisation</p>
+  <div class="hero__foot">
+    <span class="hero__scroll">Scroll</span>
+    <span class="hero__note">Project visualisation</span>
   </div>
 </section>
 
@@ -143,7 +106,7 @@
   <div class="wrap">
     <header class="shead shead--split">
       <p class="label">Plots &mdash; Udaipur</p>
-      <h2>Now the part<br>that is not a film.</h2>
+      <h2>Land measured, marked<br>and ready to register.</h2>
       <p class="shead__lede">Every plot below is drawn to its real dimensions. Sizes, facing, road width and distances are exactly as surveyed on site.</p>
     </header>
 
@@ -335,6 +298,6 @@
   <a class="bar__wa" href="https://wa.me/918890507608?text=Hi%20Parshwanath%20Property%2C%20I%20would%20like%20to%20book%20a%20site%20visit." target="_blank" rel="noopener">WhatsApp</a>
 </div>
 
-<script src="js/main.js?v=4"></script>
+<script src="js/main.js?v=5"></script>
 </body>
 </html>

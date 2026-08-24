@@ -5,32 +5,32 @@ UIT converted plots, villas, farms and homes across **Udaipur, Rajsamand and Mum
 
 Office: Amberi Circle, Near Skoda Showroom, Udaipur · **+91 88905 07608**
 
-## The walkthrough
+## Structure
 
-The page opens on a pinned, full-viewport stage where **scroll position drives
-`video.currentTime`** — you walk through the property rather than watch a loop.
-Captions and the progress rail switch on the clip's real scene cuts:
+A full-viewport hero carrying the project film on a muted autoplay loop, then
+the inventory: each listing drawn as a **measured plot plate** with its real
+dimensions, facing, road width and status, on a blueprint-sheet section.
+Distances, the firm, and a site-visit call to action follow.
 
-| Progress | Scene | Cut at |
+## The film
+
+Source is 848x478 at 1.15 Mbps, so some softness is a hard ceiling — the encode
+chain gets the most out of it rather than adding detail that was never recorded:
+
+```
+delogo -> hqdn3d -> scale (lanczos) -> unsharp
+```
+
+Denoising first matters: without it the sharpener amplifies compression noise
+instead of edges. Encoded at crf 19 for normal playback, which is far more
+efficient than the frame-accurate encode a scroll-scrubbed version would need.
+
+| | Resolution | Size |
 | --- | --- | --- |
-| 0 – 25% | aerial approach | 0.000s |
-| 25 – 51% | living room | 2.458s |
-| 51 – 75% | kitchen | 5.083s |
-| 75 – 100% | rooftop pool | 7.500s |
+| `hero.mp4` | 1280x720 | 4.5 MB |
+| `hero-mobile.mp4` | 854x480 | 2.0 MB |
 
-Two things make the scrub smooth:
-
-- **All-keyframe encode.** `-g 1 -keyint_min 1 -sc_threshold 0` so every frame is
-  a seek target. This came out smaller than an equivalent JPEG frame sequence
-  (3.6 MB vs 6.4 MB) with twice the temporal resolution.
-- **Eased seeking.** Scroll sets a target; a `requestAnimationFrame` loop eases
-  toward it and skips sub-0.015s seeks, which otherwise stall mobile Safari.
-
-Below the walkthrough the page deliberately drops from film to paperwork — a
-blueprint sheet where each listing is drawn as a **measured plot plate** with its
-real dimensions, facing, road width and status.
-
-Reduced-motion visitors get the same content as a stacked story with no pinning.
+Reduced-motion visitors get the poster frame instead of the loop.
 
 ## Run locally
 
@@ -39,16 +39,16 @@ node server.cjs
 ```
 
 Serves on <http://localhost:4999>. The static server supports byte ranges, which
-the scrubbed video needs.
+video playback needs.
 
 ## Layout
 
 ```
 index.html          single page
 css/style.css       all styles
-js/main.js          walkthrough scrubbing, nav, reveals
-assets/video/       walk.mp4 (1152x648) · walk-mobile.mp4 (720x404)
-assets/img/         stills, poster, vector logo mark
+js/main.js          nav, hero playback, scroll reveals
+assets/video/       hero.mp4 · hero-mobile.mp4
+assets/img/         poster, contact backdrop, vector logo mark
 server.cjs          static server with range support
 ```
 
@@ -59,3 +59,4 @@ server.cjs          static server with range support
   be verified against documents before registry.
 - The source film carried a watermark, removed at encode time with
   `delogo=x=750:y=379:w=38:h=39` on the 848x478 original.
+- Brand and inventory data are taken from the company's own Instagram.

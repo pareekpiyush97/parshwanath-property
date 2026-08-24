@@ -1,7 +1,7 @@
 /* ============================================================
    Parshwanath Property & Developers
-   Scroll drives the film. Palette sampled from that film
-   (twilight blues, brass lamplight) and the brand mark.
+   Palette sampled from the project film (twilight blues, brass
+   lamplight) and the brand mark.
    ============================================================ */
 
 :root {
@@ -151,108 +151,68 @@ h1 em, h2 em { font-style: normal; color: var(--brass); }
 }
 
 /* ============================================================
-   THE WALKTHROUGH
+   HERO
    ============================================================ */
 
-.walk { position: relative; height: 480svh; background: var(--night); }
-
-.walk__stage {
-  position: sticky; top: 0;
-  height: 100svh; overflow: hidden;
-  display: flex; align-items: flex-end;
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: calc(var(--nav-h) + 3rem) var(--gut) 2.2rem;
+  overflow: hidden;
+  background: var(--night);
 }
 
-.walk__video {
+.hero__video {
   position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
   z-index: 0;
-  opacity: 0; transition: opacity .9s ease;
+  opacity: 0; transition: opacity 1s ease;
 }
-.walk.is-ready .walk__video { opacity: 1; }
-.walk.is-fallback .walk__video { opacity: 1; }
+.hero__video.is-on { opacity: 1; }
 
-.walk__scrim {
+.hero__scrim {
   position: absolute; inset: 0; z-index: 1;
   background:
     linear-gradient(to top, #05080F 1%, #05080Fa6 26%, #05080F26 58%, #05080F80 100%),
     linear-gradient(to right, #05080Fd9 0%, #05080F40 52%, transparent 100%);
 }
 
-.walk__caps {
-  position: relative; z-index: 3;
-  width: 100%;
-  padding: 0 var(--gut) clamp(4.5rem, 11vh, 8rem);
-}
+.hero__inner { position: relative; z-index: 2; max-width: 46rem; margin-top: auto; }
 
-.cap {
-  grid-area: 1 / 1;
-  margin: 0;
-  max-width: 44rem;
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1);
-  pointer-events: none;
-}
-.walk__caps { display: grid; }
-.cap.is-on { opacity: 1; transform: none; pointer-events: auto; }
-
-.cap__eyebrow {
+.hero__eyebrow {
   margin: 0 0 1.3rem;
   font: 500 .72rem/1 var(--mono);
   letter-spacing: .26em; text-transform: uppercase;
   color: #BFD2E6;
 }
-.cap__eyebrow i { font-style: normal; color: var(--brass); padding: 0 .35em; }
+.hero__eyebrow i { font-style: normal; color: var(--brass); padding: 0 .35em; }
 
-.cap__title {
+.hero__title {
   margin: 0 0 1.4rem;
   font-size: clamp(2.7rem, 7.6vw, 6rem);
   line-height: .99; color: #fff;
   text-shadow: 0 2px 34px #05080F73;
 }
 
-.cap__body {
-  margin: 0; max-width: 33rem;
+.hero__lede {
+  margin: 0 0 2.3rem; max-width: 33rem;
   font-size: clamp(1rem, 1.8vw, 1.13rem);
   color: #C6D2E1;
 }
 
-/* progress rail — where you are in the walk */
+.hero__cta { display: flex; flex-wrap: wrap; gap: .85rem; }
 
-.rail {
-  position: absolute; z-index: 4;
-  right: var(--gut); top: 50%; transform: translateY(-50%);
-  display: flex; align-items: center; gap: 1rem;
-}
-.rail__marks { list-style: none; margin: 0; padding: 0; text-align: right; }
-.rail__marks li {
-  font: 500 .6rem/1 var(--mono);
-  letter-spacing: .18em; text-transform: uppercase;
-  color: #ffffff4d; padding: .95rem 0;
-  transition: color .4s;
-}
-.rail__marks li.is-on { color: var(--brass); }
-
-.rail__track {
-  position: relative; width: 1px; align-self: stretch;
-  background: #ffffff2e;
-}
-.rail__fill {
-  position: absolute; inset: 0;
-  background: var(--brass);
-  transform-origin: top; transform: scaleY(0);
-}
-
-.walk__hint, .walk__note {
-  position: absolute; z-index: 4; bottom: 1.7rem;
-  margin: 0;
+.hero__foot {
+  position: relative; z-index: 2;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-top: 3.4rem; padding-top: 1.1rem;
+  border-top: 1px solid #ffffff26;
   font: 500 .62rem/1 var(--mono);
   letter-spacing: .22em; text-transform: uppercase;
   color: #93A3B7;
 }
-.walk__hint { left: var(--gut); padding-left: 1.6rem; transition: opacity .5s; }
-.walk__hint.is-gone { opacity: 0; }
-.walk__hint::before {
+.hero__scroll { position: relative; padding-left: 1.6rem; }
+.hero__scroll::before {
   content: ""; position: absolute; left: 0; top: 50%;
   width: 1.1rem; height: 1px; background: var(--brass);
   transform-origin: left; animation: hint 2.4s ease-in-out infinite;
@@ -261,15 +221,6 @@ h1 em, h2 em { font-style: normal; color: var(--brass); }
   0%, 100% { transform: scaleX(.35); opacity: .5; }
   50%      { transform: scaleX(1);   opacity: 1; }
 }
-.walk__note { right: var(--gut); }
-
-/* reduced motion / no-scrub fallback: a plain stacked story */
-.walk.is-static { height: auto; }
-.walk.is-static .walk__stage { position: relative; height: auto; display: block; }
-.walk.is-static .walk__video { position: absolute; }
-.walk.is-static .walk__caps { display: block; padding-top: calc(var(--nav-h) + 4rem); }
-.walk.is-static .cap { opacity: 1; transform: none; margin-bottom: 4rem; }
-.walk.is-static .rail, .walk.is-static .walk__hint { display: none; }
 
 /* ============================================================
    THE SHEET — plots
@@ -510,7 +461,6 @@ h1 em, h2 em { font-style: normal; color: var(--brass); }
   .loc__grid, .about__grid, .contact__grid { grid-template-columns: 1fr; }
   .nav__links { display: none; }
   .nav__toggle { display: flex; }
-  .rail__marks { display: none; }
 }
 
 @media (max-width: 860px) {
@@ -526,12 +476,10 @@ h1 em, h2 em { font-style: normal; color: var(--brass); }
   .brand__mark { width: 34px; height: 34px; }
   .brand__name { font-size: .98rem; }
 
-  .walk { height: 420svh; }
-  .walk__caps { padding-bottom: 6.5rem; }
-  .cap__title { font-size: clamp(2.3rem, 10vw, 3.2rem); }
-  .rail { right: 1rem; top: auto; bottom: 5.5rem; transform: none; height: 22vh; }
-  .walk__note { display: none; }
-  .walk__hint { bottom: 4.4rem; }
+  .hero { min-height: 92svh; }
+  .hero__title { font-size: clamp(2.3rem, 10vw, 3.2rem); }
+  .hero__foot { margin-top: 2.2rem; }
+  .hero__note { display: none; }
 
   .about__stats { grid-template-columns: 1fr 1fr; }
   .about__stats b { font-size: 1.95rem; }
@@ -549,6 +497,5 @@ h1 em, h2 em { font-style: normal; color: var(--brass); }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
   .is-in { transition: none; }
-  .cap { transition: none; }
-  .walk__hint::before { animation: none; transform: scaleX(1); }
+  .hero__scroll::before { animation: none; transform: scaleX(1); }
 }
