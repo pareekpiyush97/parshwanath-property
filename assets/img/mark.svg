@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Parshwanath Property &amp; Developers">
+  <defs>
+    <linearGradient id="pp" x1="10%" y1="0%" x2="95%" y2="100%">
+      <stop offset="0%" stop-color="#7BD6EE"/>
+      <stop offset="45%" stop-color="#3E86C9"/>
+      <stop offset="100%" stop-color="#2B3F94"/>
+    </linearGradient>
+  </defs>
+  <!-- surveyed tower, drawn as hairlines -->
+  <g fill="none" stroke="url(#pp)" stroke-width="2" stroke-linecap="square">
+    <path d="M26 40 h20 v66"/>
+    <path d="M18 52 h8 M18 52 v54 h28"/>
+    <path d="M30 52 h12 M30 61 h12 M30 70 h12 M30 79 h12 M30 88 h12"/>
+    <path d="M12 106 h96"/>
+  </g>
+  <g fill="url(#pp)">
+    <circle cx="52" cy="70" r="2.6"/><circle cx="52" cy="80" r="2.6"/><circle cx="52" cy="90" r="2.6"/>
+  </g>
+  <!-- the P -->
+  <path fill="url(#pp)" fill-rule="evenodd" d="M58 16 h24 a23 23 0 0 1 0 46 h-6 v44 h-18 z M76 30 h6 a9 9 0 0 1 0 18 h-6 z"/>
+</svg>
